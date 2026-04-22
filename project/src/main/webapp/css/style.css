@@ -1,0 +1,810 @@
+/* =============================================
+   TaskSketch — Hand-Drawn Style CSS
+   A sketch / hand-drawn aesthetic with:
+   - Soft pastel colors (no gradients)
+   - Slightly imperfect, rough borders
+   - Rounded, organic shapes
+   - Clean spacing and minimal clutter
+   ============================================= */
+
+/* --- Google Font: Patrick Hand (handwritten feel) --- */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@400;600&display=swap');
+
+/* =============================================
+   CSS Variables (Design Tokens)
+   ============================================= */
+:root {
+    /* Color Palette — soft earthy / pastel tones */
+    --bg-primary: #faf6f0;         /* off-white / warm beige */
+    --bg-card: #ffffff;            /* white cards */
+    --bg-input: #fdf9f3;           /* soft input background */
+
+    --text-primary: #3d3229;       /* warm dark brown */
+    --text-secondary: #7a6b5d;     /* muted brown */
+    --text-light: #a89888;         /* light brown */
+
+    --accent-blue: #6b9ebb;        /* muted blue */
+    --accent-green: #7fb685;       /* soft green */
+    --accent-orange: #e8946a;      /* soft coral/orange */
+    --accent-red: #d47878;         /* muted red */
+    --accent-yellow: #e8c86a;      /* warm yellow */
+    --accent-purple: #9b8ec4;      /* lavender */
+
+    /* Sketch border color */
+    --border-sketch: #c4b5a3;      /* warm sketch line */
+    --border-dark: #8a7b6b;        /* darker sketch line */
+
+    /* Shadows (very subtle, no gradients) */
+    --shadow-soft: 2px 3px 0px #e0d6c8;
+    --shadow-card: 3px 4px 0px #ddd2c4;
+
+    /* Fonts */
+    --font-hand: 'Patrick Hand', cursive;
+    --font-cursive: 'Caveat', cursive;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+
+    /* Border radius — intentionally varied for organic feel */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-pill: 50px;
+}
+
+/* =============================================
+   Reset & Base Styles
+   ============================================= */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-hand);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    font-size: 1.125rem;
+
+    /* Subtle paper texture using repeating pattern */
+    background-image:
+        radial-gradient(circle, #e8dfd4 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    border-bottom: 2px dashed var(--accent-blue);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-orange);
+    border-color: var(--accent-orange);
+}
+
+/* =============================================
+   Sketch Border Utility
+   Uses box-shadow to create a hand-drawn look
+   ============================================= */
+.sketch-border {
+    border: 2.5px solid var(--border-sketch);
+    border-radius: var(--radius-md);
+    /* Slightly uneven border to mimic sketch */
+    box-shadow: var(--shadow-card);
+}
+
+/* =============================================
+   Layout Containers
+   ============================================= */
+.page-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+}
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--space-lg);
+}
+
+.auth-card {
+    background: var(--bg-card);
+    border: 2.5px solid var(--border-sketch);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-2xl) var(--space-xl);
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
+
+/* Small decorative doodle in corner */
+.auth-card::before {
+    content: '✎';
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--accent-orange);
+    background: var(--bg-primary);
+    padding: 0 8px;
+}
+
+/* =============================================
+   Typography
+   ============================================= */
+.page-title {
+    font-family: var(--font-cursive);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+    letter-spacing: 0.5px;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+}
+
+.section-title {
+    font-family: var(--font-cursive);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 2px dashed var(--border-sketch);
+    display: inline-block;
+}
+
+/* =============================================
+   Form Styles
+   ============================================= */
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+    font-weight: 400;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    background: var(--bg-input);
+    border: 2px solid var(--border-sketch);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(107, 158, 187, 0.15);
+}
+
+.form-group input::placeholder {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* =============================================
+   Buttons
+   ============================================= */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    border: 2.5px solid var(--border-dark);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-bottom: 2.5px solid var(--border-dark);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Primary button — muted blue */
+.btn-primary {
+    background: var(--accent-blue);
+    color: #fff;
+    border-color: #5a879f;
+}
+
+.btn-primary:hover {
+    background: #5f90ad;
+    color: #fff;
+    border-color: #5a879f;
+}
+
+/* Secondary button — outlined */
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-sketch);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-input);
+}
+
+/* Success button — soft green */
+.btn-success {
+    background: var(--accent-green);
+    color: #fff;
+    border-color: #6aa073;
+}
+
+.btn-success:hover {
+    background: #6ea87a;
+    color: #fff;
+    border-color: #6aa073;
+}
+
+/* Danger button — muted red */
+.btn-danger {
+    background: var(--accent-red);
+    color: #fff;
+    border-color: #b86666;
+}
+
+.btn-danger:hover {
+    background: #c46a6a;
+    color: #fff;
+    border-color: #b86666;
+}
+
+/* Warning button — soft orange */
+.btn-warning {
+    background: var(--accent-orange);
+    color: #fff;
+    border-color: #c87d58;
+}
+
+.btn-warning:hover {
+    background: #dc865e;
+    color: #fff;
+    border-color: #c87d58;
+}
+
+/* Full-width button */
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* Small button */
+.btn-sm {
+    padding: 6px 14px;
+    font-size: 0.95rem;
+}
+
+/* =============================================
+   Navigation Bar
+   ============================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-xl);
+    border-bottom: 2.5px dashed var(--border-sketch);
+}
+
+.navbar-brand {
+    font-family: var(--font-cursive);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border: none;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: var(--accent-blue);
+    border: none;
+}
+
+.navbar-brand .brand-icon {
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.navbar-user {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.navbar-user strong {
+    color: var(--text-primary);
+}
+
+/* =============================================
+   Stats Cards
+   ============================================= */
+.stats-row {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 140px;
+    background: var(--bg-card);
+    border: 2.5px solid var(--border-sketch);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+}
+
+.stat-card .stat-number {
+    font-family: var(--font-cursive);
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.stat-card .stat-label {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-card.stat-total .stat-number { color: var(--accent-blue); }
+.stat-card.stat-pending .stat-number { color: var(--accent-orange); }
+.stat-card.stat-completed .stat-number { color: var(--accent-green); }
+
+/* Doodle decorations on stat cards */
+.stat-card.stat-total::after { content: '📋'; position: absolute; top: -10px; left: 10px; font-size: 1.2rem; }
+.stat-card.stat-pending::after { content: '⏳'; position: absolute; top: -10px; left: 10px; font-size: 1.2rem; }
+.stat-card.stat-completed::after { content: '✓'; position: absolute; top: -12px; left: 10px; font-size: 1.4rem; color: var(--accent-green); font-weight: bold; }
+
+/* =============================================
+   Task List
+   ============================================= */
+.task-list {
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: var(--bg-card);
+    border: 2px solid var(--border-sketch);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.task-item:hover {
+    transform: translateX(4px);
+    box-shadow: 4px 5px 0px #ddd2c4;
+}
+
+/* Completed tasks get a subtle style change */
+.task-item.completed {
+    opacity: 0.7;
+    border-style: dashed;
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: var(--text-light);
+}
+
+/* Checkbox-style toggle area */
+.task-checkbox {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: 2.5px solid var(--border-dark);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.task-checkbox:hover {
+    background: var(--accent-green);
+    color: #fff;
+    border-color: #6aa073;
+}
+
+.task-checkbox.checked {
+    background: var(--accent-green);
+    color: #fff;
+    border-color: #6aa073;
+}
+
+/* Task body (title + date) */
+.task-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-title {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    word-break: break-word;
+}
+
+.task-date {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+/* Task action buttons */
+.task-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+}
+
+.task-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 2px solid var(--border-sketch);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    background: transparent;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.task-action-btn:hover {
+    transform: translateY(-2px);
+    border-bottom: 2px solid var(--border-sketch);
+}
+
+.task-action-btn.edit-btn:hover {
+    background: var(--accent-yellow);
+    color: #fff;
+    border-color: #c8ab58;
+}
+
+.task-action-btn.delete-btn:hover {
+    background: var(--accent-red);
+    color: #fff;
+    border-color: #b86666;
+}
+
+/* =============================================
+   Status Badges
+   ============================================= */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.8rem;
+    border-radius: var(--radius-pill);
+    border: 2px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+}
+
+.badge-pending {
+    color: var(--accent-orange);
+    border-color: var(--accent-orange);
+    background: rgba(232, 148, 106, 0.1);
+}
+
+.badge-completed {
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+    background: rgba(127, 182, 133, 0.1);
+}
+
+/* =============================================
+   Alert Messages
+   ============================================= */
+.alert {
+    padding: var(--space-md) var(--space-lg);
+    border: 2px solid;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-lg);
+    font-size: 1rem;
+}
+
+.alert-error {
+    background: rgba(212, 120, 120, 0.1);
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+.alert-success {
+    background: rgba(127, 182, 133, 0.1);
+    border-color: var(--accent-green);
+    color: #5a8f60;
+}
+
+/* =============================================
+   Empty State
+   ============================================= */
+.empty-state {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-lg);
+    color: var(--text-light);
+}
+
+.empty-state .empty-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
+    display: block;
+}
+
+.empty-state p {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-lg);
+}
+
+/* =============================================
+   Auth Page Footer Links
+   ============================================= */
+.auth-footer {
+    text-align: center;
+    margin-top: var(--space-xl);
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* =============================================
+   Decorative Elements
+   ============================================= */
+
+/* Wavy underline effect for headings */
+.wavy-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.wavy-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 6px;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6'%3E%3Cpath d='M0 3 Q5 0 10 3 Q15 6 20 3' fill='none' stroke='%23c4b5a3' stroke-width='1.5'/%3E%3C/svg%3E")
+        repeat-x;
+    background-size: 20px 6px;
+}
+
+/* Doodle stars scattered on page */
+.doodle-star {
+    position: fixed;
+    font-size: 1.2rem;
+    opacity: 0.15;
+    pointer-events: none;
+    color: var(--accent-yellow);
+}
+
+/* =============================================
+   Dashboard Header Area
+   ============================================= */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.greeting {
+    font-family: var(--font-cursive);
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.greeting-sub {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-top: var(--space-xs);
+}
+
+/* =============================================
+   Task Header (with Add Task button)
+   ============================================= */
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+}
+
+/* =============================================
+   Responsive Adjustments
+   ============================================= */
+@media (max-width: 640px) {
+    .page-wrapper {
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    .stats-row {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        min-width: auto;
+    }
+
+    .task-item {
+        flex-wrap: wrap;
+    }
+
+    .task-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: var(--space-sm);
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+}
+
+/* =============================================
+   Sketch-style horizontal rule
+   ============================================= */
+.sketch-hr {
+    border: none;
+    border-top: 2.5px dashed var(--border-sketch);
+    margin: var(--space-xl) 0;
+}
+
+/* =============================================
+   Delete confirm styling
+   ============================================= */
+.task-action-btn.delete-btn {
+    position: relative;
+}
+
+/* =============================================
+   Quick-add form on dashboard
+   ============================================= */
+.quick-add-form {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+}
+
+.quick-add-form input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    border: 2.5px solid var(--border-sketch);
+    border-radius: var(--radius-pill);
+    outline: none;
+    transition: border-color 0.2s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.quick-add-form input[type="text"]:focus {
+    border-color: var(--accent-blue);
+}
+
+.quick-add-form input[type="text"]::placeholder {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* =============================================
+   Logo / Brand Doodle
+   ============================================= */
+.brand-doodle {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border: 2.5px solid var(--text-primary);
+    border-radius: 8px;
+    position: relative;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.brand-doodle::before {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3rem;
+    color: var(--accent-green);
+    font-weight: bold;
+}
+
+/* =============================================
+   Page transitions (subtle)
+   ============================================= */
+.fade-in {
+    animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
